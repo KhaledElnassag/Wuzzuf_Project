@@ -1,0 +1,374 @@
+create table admin
+(admin_name varchar(20)primary key,admin_first varchar(20),admin_last varchar(20),admin_pass varchar(20),admin_mail varchar(50));
+
+create table users
+(username varchar(20)primary key,userpass varchar(20),usermail varchar(20),phone int,jobtitle varchar(20),city varchar(20),streetname varchar(20),streetnumber varchar(20),birthday date,exepriance varchar(120),cv varchar(500));
+
+
+create table employer
+(companymail varchar(20)primary key,comp_name varchar(20),comp_phone varchar(20) ,comp_pass varchar(20),comp_city varchar(20),comp_industry varchar(20),comp_size varchar(20),yearfounded varchar(20),website varchar(20));
+
+create table user_employer
+(user_name varchar(20) References users (username) , company_mail varchar(20) References employer (companymail),      CONSTRAINT un_cm_PK  PRIMARY KEY(user_name, company_mail));
+
+create table jobs
+(id varchar(20) primary key ,title varchar(20),description varchar(500),jobcity varchar(20),yearsofexepriance varchar(20),salary varchar(20) ,jobtype varchar(20),requirments varchar(500),mail varchar(20) References employer (companymail));
+
+create table user_job
+(user_ varchar(20) References users (username) , jobid varchar(20) References jobs (id),CONSTRAINT un_ji_PK  PRIMARY KEY(user_, jobid));
+
+create table admin_user
+(user_n varchar(20) References users (username) , adminn varchar(20) References admin (admin_name),CONSTRAINT un_an_PK  PRIMARY KEY(user_n, adminn));
+
+create table admin_jobs
+(jobid varchar(20) References jobs (id) , adminn varchar(20) References admin (admin_name),CONSTRAINT ji_an_PK  PRIMARY KEY(jobid, adminn));
+
+create table admin_employer
+(comp_mail varchar(50) References employer (companymail) , adminn varchar(20) References admin (admin_name),CONSTRAINT cm_an_PK  PRIMARY KEY(comp_mail, adminn));
+
+
+insert into admin
+values('khaled','khaled','reda','1234kh','khaledreda899@gmail.com');
+insert into admin
+values('mamdouh','mohamed','mamdouh','56789m','mohamedmamdouh@gmail.com');
+insert into admin
+values('nassag','khaled','nassag','sdsa12','khalednassag@gmail.com');
+insert into admin
+values('zoma','hazem','abdelnaser','zoma','hazemabdelnasser@gmail.com');
+insert into admin
+values('morad','mohamed','morad','222223','mohamedmorad@gmail.com');
+insert into admin
+values('hossam','hossam','shaban','9868s','hossamshaban@gmail.com');
+
+
+
+insert into users values
+('khaled','khaled12','khaledreda@yahoo.com',01235896475,'software engineer','cairo','salam city','2 h','15-AUG-1999','sdasd sadsafsa safaf sfasf','fsgjfsgjsfgsgfyggjfgsghfgjdgjhgfsygfhgsvfysgyfgsdfshfgfygsfdgygsdf');
+insert into users values
+('ahmed','123r3','ahmed@yahoo.com',01135326475,'software developer','cairo','nasr city','4','15-NOV-1998','sdasd sadsafsa sffdsasff sfasf','fsgjfsgjsgggrwqqqrewrwqfgsdfshfgfygsfdgygsdf');
+insert into users values
+('adham','2133a','adham@yahoo.com',01035123375,'machine learning developer','cairo','khsos','2 h','10-MAY-1999','sdasd sadsafsa safaf sfasf',NULL);
+insert into users values
+('mamdouh','49846651','do7a@yahoo.com',0123521475,'web developer','cairo','abasia','8','11-NOV-1998','safffsa sagg sfasf','fsgjfsgjsfgsgfynnjjujuurhuwieershfgfygsfdgygsdf');
+insert into users values
+('ahmedmohamed','11ed12','qwertyy@yahoo.com',01245678475,'android developer','cairo','zayton','2','15-JUN-1999','sdasd sadsafsa safaf sfasf','fsgjfsgjsfgsgfyggjfgsghfgjdgjhgfsygfhgsvfysgyfgsdfshfgfygsfdgygsdf' );
+insert into users values
+('hazem','sdadw','zomaaa@yahoo.com',01158528775,'web designer','cairo','hdayek','5','15-FEB-1999','sdasd sadsafsa safaf sfasf',NUll );
+
+
+
+
+insert into employer values
+('wol@gmail.com','wol','asd5890',01589475627,'cairo','development','between 45 to 55','3 years old','www.wol.com');
+insert into employer values
+('fol@gmail.com','fol','fol5890',01158775627,'giza','designing','between 40 to 45','6 years old','www.fol.com');
+insert into employer values
+('bool@gmail.com','bool','boolbool',01298741827,'tanta','computer science','less than 30','1 years old','www.boolbool.com');
+insert into employer values
+('ave@gmail.com','ave','1231223',0122222627,'helwan','development','greater than 70','5 years old','www.aveeva.com');
+insert into employer values
+('ole@gmail.com','ole','ssssee',01010101010,'cairo','testing','10','2 years old','www.oleleolele.com');
+
+
+
+
+insert into jobs 
+values(1,'web developer','need many developer to develop a web sites in many fields ','tanta','2 years','min: 3000','full time','have a konwledge of html and css and java script ..etc','bool@gmail.com');
+insert into jobs 
+values(2,'tester','need many testers to test a web sites ','cairo','1 years','min: 4000','full time','have a konwledge of pentration testing','ole@gmail.com');
+insert into jobs 
+values(3,'andriod developer','developing applications for android ','giza','1 years','min: 2000','part time','have a konwledge of android and java language','fol@gmail.com');
+insert into jobs 
+values(4,'flutter developer','need many developer for anew tool flutter for develop many application ','tanta','1 years','min: 4000','part time','have a konwledge of flutter tool','bool@gmail.com');
+insert into jobs 
+values(5,'database developer','developing a big database for multinational company ','helwan','3 years','min: 5000','full time','have a konwledge of database quires and designing and developing thim','ave@gmail.com');
+
+
+
+insert into admin_jobs
+values(1,'khaled');
+insert into admin_jobs
+values(2,'khaled');
+insert into admin_jobs
+values(3,'khaled');
+insert into admin_jobs
+values(4,'khaled');
+insert into admin_jobs
+values(5,'khaled');
+insert into admin_jobs
+values(1,'mamdouh');
+insert into admin_jobs
+values(2,'mamdouh');
+insert into admin_jobs
+values(3,'mamdouh');
+insert into admin_jobs
+values(4,'mamdouh');
+insert into admin_jobs
+values(5,'mamdouh');
+
+
+
+
+insert into user_job
+values('adham',1);
+insert into user_job
+values('ahmed',1);
+insert into user_job
+values('ahmedmohamed',1);
+insert into user_job
+values('hazem',1);
+insert into user_job
+values('khaled',1);
+insert into user_job
+values('mamdouh',1);
+insert into user_job
+values('adham',2);
+insert into user_job
+values('ahmed',2);
+insert into user_job
+values('ahmedmohamed',2);
+insert into user_job
+values('hazem',2);
+insert into user_job
+values('khaled',2);
+insert into user_job
+values('mamdouh',2);
+insert into user_job
+values('adham',3);
+insert into user_job
+values('ahmed',3);
+insert into user_job
+values('ahmedmohamed',3);
+insert into user_job
+values('hazem',3);
+insert into user_job
+values('khaled',3);
+insert into user_job
+values('mamdouh',3);
+insert into user_job
+values('adham',4);
+insert into user_job
+values('ahmed',4);
+insert into user_job
+values('ahmedmohamed',4);
+insert into user_job
+values('hazem',4);
+insert into user_job
+values('khaled',4);
+insert into user_job
+values('mamdouh',4);
+insert into user_job
+values('adham',5);
+insert into user_job
+values('ahmed',5);
+insert into user_job
+values('ahmedmohamed',5);
+insert into user_job
+values('hazem',5);
+insert into user_job
+values('khaled',5);
+insert into user_job
+values('mamdouh',5);
+
+
+
+
+insert into user_employer
+values('adham','wol@gmail.com');
+insert into user_employer
+values('ahmed','wol@gmail.com');
+insert into user_employer
+values('ahmedmohamed','wol@gmail.com');
+insert into user_employer
+values('hazem','wol@gmail.com');
+insert into user_employer
+values('khaled','wol@gmail.com');
+insert into user_employer
+values('mamdouh','wol@gmail.com');
+insert into user_employer
+values('adham','ole@gmail.com');
+insert into user_employer
+values('ahmed','ole@gmail.com');
+insert into user_employer
+values('ahmedmohamed','ole@gmail.com');
+insert into user_employer
+values('hazem','ole@gmail.com');
+insert into user_employer
+values('khaled','ole@gmail.com');
+insert into user_employer
+values('mamdouh','ole@gmail.com');
+insert into user_employer
+values('adham','fol@gmail.com');
+insert into user_employer
+values('ahmed','fol@gmail.com');
+insert into user_employer
+values('ahmedmohamed','fol@gmail.com');
+insert into user_employer
+values('hazem','fol@gmail.com');
+insert into user_employer
+values('khaled','fol@gmail.com');
+insert into user_employer
+values('mamdouh','fol@gmail.com');
+insert into user_employer
+values('adham','bool@gmail.com');
+insert into user_employer
+values('ahmed','bool@gmail.com');
+insert into user_employer
+values('ahmedmohamed','bool@gmail.com');
+insert into user_employer
+values('hazem','bool@gmail.com');
+insert into user_employer
+values('khaled','bool@gmail.com');
+insert into user_employer
+values('mamdouh','bool@gmail.com');
+insert into user_employer
+values('adham','ave@gmail.com');
+insert into user_employer
+values('ahmed','ave@gmail.com');
+insert into user_employer
+values('ahmedmohamed','ave@gmail.com');
+insert into user_employer
+values('hazem','ave@gmail.com');
+insert into user_employer
+values('khaled','ave@gmail.com');
+insert into user_employer
+values('mamdouh','ave@gmail.com');
+
+
+
+insert into admin_user
+values('adham','hossam');
+insert into admin_user
+values('ahmed','hossam');
+insert into admin_user
+values('ahmedmohamed','hossam');
+insert into admin_user
+values('hazem','hossam');
+insert into admin_user
+values('khaled','hossam');
+insert into admin_user
+values('mamdouh','hossam');
+insert into admin_user
+values('adham','khaled');
+insert into admin_user
+values('ahmed','khaled');
+insert into admin_user
+values('ahmedmohamed','khaled');
+insert into admin_user
+values('hazem','khaled');
+insert into admin_user
+values('khaled','khaled');
+insert into admin_user
+values('mamdouh','khaled');
+insert into admin_user
+values('adham','mamdouh');
+insert into admin_user
+values('ahmed','mamdouh');
+insert into admin_user
+values('ahmedmohamed','mamdouh');
+insert into admin_user
+values('hazem','mamdouh');
+insert into admin_user
+values('khaled','mamdouh');
+insert into admin_user
+values('mamdouh','mamdouh');
+insert into admin_user
+values('adham','morad');
+insert into admin_user
+values('ahmed','morad');
+insert into admin_user
+values('ahmedmohamed','morad');
+insert into admin_user
+values('hazem','morad');
+insert into admin_user
+values('khaled','morad');
+insert into admin_user
+values('mamdouh','morad');
+insert into admin_user
+values('adham','nassag');
+insert into admin_user
+values('ahmed','nassag');
+insert into admin_user
+values('ahmedmohamed','nassag');
+insert into admin_user
+values('hazem','nassag');
+insert into admin_user
+values('khaled','nassag');
+insert into admin_user
+values('mamdouh','nassag');
+insert into admin_user
+values('adham','zoma');
+insert into admin_user
+values('ahmed','zoma');
+insert into admin_user
+values('ahmedmohamed','zoma');
+insert into admin_user
+values('hazem','zoma');
+insert into admin_user
+values('khaled','zoma');
+insert into admin_user
+values('mamdouh','zoma');
+
+
+
+
+insert into admin_employer
+values('ave@gmail.com','hossam');
+insert into admin_employer
+values('ave@gmail.com','khaled');
+insert into admin_employer
+values('ave@gmail.com','mamdouh');
+insert into admin_employer
+values('ave@gmail.com','morad');
+insert into admin_employer
+values('ave@gmail.com','nassag');
+insert into admin_employer
+values('ave@gmail.com','zoma');
+insert into admin_employer
+values('bool@gmail.com','hossam');
+insert into admin_employer
+values('bool@gmail.com','khaled');
+insert into admin_employer
+values('bool@gmail.com','morad');
+insert into admin_employer
+values('bool@gmail.com','mamdouh');
+insert into admin_employer
+values('bool@gmail.com','nassag');
+insert into admin_employer
+values('bool@gmail.com','zoma');
+insert into admin_employer
+values('fol@gmail.com','hossam');
+insert into admin_employer
+values('fol@gmail.com','khaled');
+insert into admin_employer
+values('fol@gmail.com','mamdouh');
+insert into admin_employer
+values('fol@gmail.com','nassag');
+insert into admin_employer
+values('fol@gmail.com','morad');
+insert into admin_employer
+values('fol@gmail.com','zoma');
+insert into admin_employer
+values('ole@gmail.com','hossam');
+insert into admin_employer
+values('ole@gmail.com','khaled');
+insert into admin_employer
+values('ole@gmail.com','mamdouh');
+insert into admin_employer
+values('ole@gmail.com','morad');
+insert into admin_employer
+values('ole@gmail.com','nassag');
+insert into admin_employer
+values('ole@gmail.com','zoma');
+insert into admin_employer
+values('wol@gmail.com','khaled');
+insert into admin_employer
+values('wol@gmail.com','hossam');
+insert into admin_employer
+values('wol@gmail.com','nassag');
+insert into admin_employer
+values('wol@gmail.com','mamdouh');
+insert into admin_employer
+values('wol@gmail.com','morad');
+insert into admin_employer
+values('wol@gmail.com','zoma');
